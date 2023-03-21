@@ -25,3 +25,4 @@ btnStop.addEventListener('click', () => {
   btnStop.disabled = true;
   btnStart.disabled = false;
 });
+
