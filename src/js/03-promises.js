@@ -25,5 +25,20 @@ function createPromise(position, delayNumber) {
 function stepAmountDelayPromise(e) {
   e.preventDefault();
 
-  
+let delayNumber = +delay.value;
+const stepNumber = +step.value;
+const amountNumber = +amount.value;
+
+for (let position = 1; position <= amountNumber; position++) {
+  createPromise(position, delayNumber)
+  .then(({ position, delayNumber }) => {
+    Notify.success(`✅ Fulfilled promise ${position} in ${delayNumber}ms`);
+  })
+  .catch(({ position, delayNumber }) => {
+    Notify.failure(`❌ Rejected promise ${position} in ${delayNumber}ms`);
+  });
+  delayNumber += stepNumber;
 }
+
+}
+form.addEventListener('submit', stepAmountDelayPromise);
